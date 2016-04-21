@@ -1,22 +1,21 @@
 library(shiny);
-
-shinyUI(fluidPage(theme = "bootstrap.css",#get more bootstrap themes from http://bootswatch.com/
-                  # Set the page title
-                  titlePanel("Data Science Capstone - SwiftKey Predictor Using Back-Off Good-Turing"),
-  
+shinyUI(pageWithSidebar(
+  headerPanel("Next words prediction"),
   sidebarPanel(
-    textInput("text",label = h3("Input the sentence"), value = "hello how are"),
-    sliderInput("predictions", "Numbers of Predicted words:",
+    textInput("text",label = h3("Type an incomplete sentence"), value = "thank"),
+    sliderInput("predictions", "Predictions count:",
                 min = 1, max = 8, value = 1, step = 1),
-    submitButton('Submit')
-
+    submitButton('Submit'),
+    br(),
+    h5("Coursera Capstone Project"),
+    h5("by Pat")
   ),
-  mainPanel(
-    tabsetPanel (
-      tabPanel('One word prediction',
-               dataTableOutput("word1")),
-      tabPanel('Two words prediction',
-               dataTableOutput("word2"))
-    )
+mainPanel(
+  tabsetPanel (
+    tabPanel('One word prediction',
+             dataTableOutput("word1")),
+    tabPanel('Two words prediction',
+             dataTableOutput("word2"))
   )
+)
 ))
